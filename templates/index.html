@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+
+<head>
+<title>Reminders</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+
+<style>
+body {
+    margin-left: 0; margin-right: 0;
+    font-family: Roboto, serif;
+}
+
+#events .event:nth-child(even) {
+    background-color: #f8f8f8;
+}
+
+.event {
+    padding 0.5em 0 0.5em;
+    text-align: center;
+    font-size: 36px;
+    color: #333;
+}
+
+.when {
+    font-size: 28px;
+    color: #666;
+}
+
+@media screen and (max-width: 800px) {
+    .event {
+          font-size: 28px;
+    }
+    .when {
+          font-size: 22px;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<div id="events">
+{% for event in events %}
+  <div class="event">
+    <div class="name">{{ event.name }}</div>
+    <div class="when">
+        {%- if event.days == 0 %}is Today
+        {%- elif event.days == 1 %}is Tomorrow
+        {%- else %}in {{ event.days }} days
+        {%- endif -%}
+    <div>
+  </div>
+{% endfor %}
+</div>
+
+</body>
+
+</html>

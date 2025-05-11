@@ -2,11 +2,18 @@ from collections import defaultdict
 from datetime import datetime
 from pathlib import Path
 
+from jinja2 import Environment, FileSystemLoader
+
 
 today = datetime.today()
 today = datetime(today.year, today.month, today.day)
 # Adjusting from UTC left as an exercise. Not an issue for
 # the server I'll be running this on
+
+jinja_env = Environment(
+    loader=FileSystemLoader('templates'),
+    autoescape=True,
+)
 
 events = []
 names = set()
@@ -41,5 +48,8 @@ for p in Path('.').iterdir():
 
 events = sorted(events, key=lambda e: e['dt'])
 
-for event in events:
-    print(event['dt'], event['days'], event['name'])
+
+context = {
+    'events': events,
+}
+print(jinja_env.get_template('index.html').render(**context))
