@@ -1,6 +1,6 @@
-from collections import defaultdict
 from datetime import datetime
 from pathlib import Path
+import sys
 
 from jinja2 import Environment, FileSystemLoader
 
@@ -21,7 +21,9 @@ names = set()
 for p in Path('.').iterdir():
     if p.suffix == '.dates':
         with p.open() as f:
+            line_no = 0
             for line in f:
+                line_no += 1
                 if line == '\n' or line.startswith('#'):
                     continue
                 first, rest = line.split(' ', 1)
@@ -29,7 +31,7 @@ for p in Path('.').iterdir():
                 try:
                     dt = datetime.strptime(first, '%Y-%m-%d')
                 except ValueError:
-                    # TODO consider something other than silent discards
+                    sys.stderr.write(f"{p}:{line_no}: {line}")
                     continue
 
                 if dt < today:
