@@ -18,11 +18,11 @@ One-time setup
     python3 -m venv venv
     venv/bin/pip install -r requirements.txt
 
-then
+optionally add a `personal.dates` (which is in `.gitignore` to get it from accidentally getting broadcast to the world), then
 
     venv/bin/python reminders.py > /var/www/html/.../index.html
 
-Running the latter daily from `cron` (after a `git pull`) keeps the days straight.
+Running the latter daily from `cron` (after a `git pull`) keeps the things fresh.
 
 ## Maintenance
 
