@@ -24,7 +24,7 @@ optionally add a `personal.dates` (which is in `.gitignore` to get it from accid
 
 Running the latter daily from `cron` (after a `git pull`) keeps the things fresh.
 
-I have this set up on a small server at home, and use Tailscale and their [Letsencrypt support](https://tailscale.com/kb/1153/enabling-https) to get private, secure access wherever I happen to be.
+I have this set up on a small Linux server at home, and use Tailscale and their [Letsencrypt support](https://tailscale.com/kb/1153/enabling-https) to get private, secure access wherever I happen to be.
 
 ## Maintenance
 
